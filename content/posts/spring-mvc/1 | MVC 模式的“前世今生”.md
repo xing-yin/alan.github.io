@@ -1,7 +1,7 @@
 ---
 weight: 2
 title: "Spring MVC 系列之 MVC 模式的“前世今生”"
-date: 2020-03-05T16:30:05+08:00
+date: 2021-03-12T16:30:05+08:00
 lastmod: 2020-03-05T16:30:05+08:00
 draft: false
 author: "AlanYin"

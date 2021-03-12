@@ -3,21 +3,21 @@
         <title>AlanYin`s Blog</title>
         <link>https://xing-yin.github.io/alan.github.io/</link>
         <description>关于 LoveIt 主题</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 05 Mar 2020 16:30:05 &#43;0800</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 12 Mar 2021 16:30:05 &#43;0800</lastBuildDate>
             <atom:link href="https://xing-yin.github.io/alan.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
-    <title>Spring MVC 系列之 MVC 模式的“前世今生”</title>
-    <link>https://xing-yin.github.io/alan.github.io/1-mvc-%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/</link>
-    <pubDate>Thu, 05 Mar 2020 16:30:05 &#43;0800</pubDate>
-    <author>作者</author>
-    <guid>https://xing-yin.github.io/alan.github.io/1-mvc-%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/</guid>
-    <description><![CDATA[我们可能经常听到“架构模式”（architectural pattern）这个词，这到底是什么意思？其实所谓的架构模式，就是设计一个程序结构的]]></description>
-</item><item>
     <title>Markdown 基本语法</title>
     <link>https://xing-yin.github.io/alan.github.io/basic-markdown-syntax/</link>
     <pubDate>Sun, 01 Dec 2019 21:57:40 &#43;0800</pubDate>
     <author>作者</author>
     <guid>https://xing-yin.github.io/alan.github.io/basic-markdown-syntax/</guid>
     <description><![CDATA[<p>这篇文章提供了可以在 Hugo 的文章中使用的基本 Markdown 语法示例.</p>]]></description>
+</item><item>
+    <title>Spring MVC 系列之 MVC 模式的“前世今生”</title>
+    <link>https://xing-yin.github.io/alan.github.io/1-mvc-%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/</link>
+    <pubDate>Fri, 12 Mar 2021 16:30:05 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://xing-yin.github.io/alan.github.io/1-mvc-%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/</guid>
+    <description><![CDATA[我们可能经常听到“架构模式”（architectural pattern）这个词，这到底是什么意思？其实所谓的架构模式，就是设计一个程序结构的]]></description>
 </item></channel>
 </rss>
