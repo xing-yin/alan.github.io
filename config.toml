@@ -1,14 +1,14 @@
-baseURL = "https://alanyx.github.io/alan.github.io/"
+# website title
+# 网站标题
+title = "AlanYin`s Blog"
+
+baseURL = "https://xing-yin.github.io/alan.github.io/"
 # [en, zh-cn, fr, pl, ...] determines default content language
 defaultContentLanguage = "zh-cn"
 # theme
 theme = "LoveIt"
 # themes directory
 publishDir = "docs"
-
-# website title
-# 网站标题
-title = "AlanYin`s Blog"
 
 # whether to use robots.txt
 # 是否使用 robots.txt
