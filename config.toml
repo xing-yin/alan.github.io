@@ -2,7 +2,8 @@
 # 网站标题
 title = "AlanYin`s Blog"
 
-baseURL = "https://xing-yin.github.io/alan.github.io/"
+# baseURL = "https://xing-yin.github.io/alan.github.io/"
+baseURL = "https://xing-yin.github.io/"
 # [en, zh-cn, fr, pl, ...] determines default content language
 defaultContentLanguage = "zh-cn"
 # theme

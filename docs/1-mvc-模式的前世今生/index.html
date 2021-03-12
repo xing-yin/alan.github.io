@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Spring MVC 系列之 MVC 模式的“前世今生” - AlanYin`s Blog</title><meta name="Description" content="关于 LoveIt 主题"><meta property="og:title" content="Spring MVC 系列之 MVC 模式的“前世今生”" />
+<meta property="og:description" content="我们可能经常听到“架构模式”（architectural pattern）这个词，这到底是什么意思？其实所谓的架构模式，就是设计一个程序结构的" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://xing-yin.github.io/1-mvc-%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/" /><meta property="og:image" content="https://xing-yin.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-03-05T16:30:05&#43;08:00" />
+<meta property="article:modified_time" content="2020-03-05T16:30:05&#43;08:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://xing-yin.github.io/logo.png"/>
+
+<meta name="twitter:title" content="Spring MVC 系列之 MVC 模式的“前世今生”"/>
+<meta name="twitter:description" content="我们可能经常听到“架构模式”（architectural pattern）这个词，这到底是什么意思？其实所谓的架构模式，就是设计一个程序结构的"/>
+<meta name="application-name" content="AlanYin">
+<meta name="apple-mobile-web-app-title" content="AlanYin"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="canonical" href="https://xing-yin.github.io/1-mvc-%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/" /><link rel="prev" href="https://xing-yin.github.io/theme-documentation-content/" /><link rel="next" href="https://xing-yin.github.io/theme-documentation-basics/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Spring MVC 系列之 MVC 模式的“前世今生”",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/xing-yin.github.io\/1-mvc-%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F\/"
+        },"image": ["https:\/\/xing-yin.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "content, Markdown","wordcount":  2837 ,
+        "url": "https:\/\/xing-yin.github.io\/1-mvc-%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F\/","datePublished": "2020-03-05T16:30:05+08:00","dateModified": "2020-03-05T16:30:05+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "https:\/\/xing-yin.github.io\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "AlanYin"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="AlanYin`s Blog">AlanYin</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/categories/documentation/"> 文档 </a><a class="menu-item" href="/about/"> 关于 </a><a class="menu-item" href="https://github.com/Alanyx" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="AlanYin`s Blog">AlanYin</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/categories/documentation/" title="">文档</a><a class="menu-item" href="/about/" title="">关于</a><a class="menu-item" href="https://github.com/Alanyx" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Spring MVC 系列之 MVC 模式的“前世今生”</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>AlanYin</a></span>&nbsp;<span class="post-category"></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-03-05">2020-03-05</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2837 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 6 分钟&nbsp;
+                <span id="/1-mvc-%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/" class="leancloud_visitors" data-flag-title="Spring MVC 系列之 MVC 模式的“前世今生”">
+                        <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#什么是-mvc-">什么是 MVC ?</a></li>
+    <li><a href="#mvc-波澜壮阔的前世今生">MVC 波澜壮阔的“前世今生”</a></li>
+    <li><a href="#时代1model1-模式的出现让史前的混沌世界出现黎明前的曙光">时代1：Model1 模式的出现，让“史前”的混沌世界出现黎明前的曙光</a>
+      <ul>
+        <li>
+          <ul>
+            <li>
+              <ul>
+                <li><a href="#那为什么-model1-后来从江湖上销声匿迹了呢">那为什么 Model1 后来从江湖上“销声匿迹”了呢？</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#时代2model2mvc模式出现刀耕火种的原始时代迈入了石器时代">时代2：Model2（MVC）模式出现，刀耕火种的原始时代迈入了石器时代</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#model2-模式有什么优缺点">Model2 模式有什么优缺点？</a></li>
+            <li><a href="#那-model1-和-model2-有什么区别">那 Model1 和 Model2 有什么区别？</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#时代3struts1-匆匆登上历史舞台又快速落幕">时代3：Struts1 匆匆登上历史舞台，又快速落幕</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#struts1-组成部分">Struts1 组成部分</a></li>
+            <li><a href="#servlet-的执行过程">Servlet 的执行过程</a></li>
+            <li><a href="#struts1-的执行过程">Struts1 的执行过程</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#时代4struts2-野心勃勃却创业未半而中道崩殂">时代4：Struts2 野心勃勃却“创业未半而中道崩殂”</a>
+      <ul>
+        <li><a href="#struts2-诞生背景">Struts2 诞生背景</a></li>
+        <li><a href="#struts1-与struts2-有什么区别">Struts1 与Struts2 有什么区别？</a></li>
+        <li><a href="#为什么-struts2中道崩殂">为什么 Struts2“中道崩殂”？</a></li>
+      </ul>
+    </li>
+    <li><a href="#时代5迈入-spring-mvc-如日中天的时代">时代5：迈入 Spring MVC 如日中天的时代</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#springmvc-原理图">SpringMVC 原理图</a></li>
+          </ul>
+        </li>
+        <li><a href="#spring-mvc和-struts2-有什么区别">Spring MVC和 Struts2 有什么区别？</a>
+          <ul>
+            <li><a href="#参考链接">参考链接：</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>我们可能经常听到“<strong>架构模式</strong>”（architectural pattern）这个词，这到底是什么意思？其实所谓的架构模式，就是设计一个程序结构的学问，属于编程方法论的范畴。</p>
+<p>这么说有些抽象，我们今天讨论的 MVC 就是一种架构模式，接下来，在正式介绍 Spring MVC 之前先有个直观的认识，我们一起来了解一下 MVC 模式和其发展历史，毕竟站在更高的角度可以帮助我们更好地了解它的整体设计的缘由。</p>
+<h2 id="什么是-mvc-">什么是 MVC ?</h2>
+<p>MVC 是 Mode(模型)、View(视图)、Controller(控制) 三个单词的缩写，它们的作用大致如下：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">组成</th>
+<th style="text-align:center">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">View</td>
+<td style="text-align:center">最上层，即面向终端用户的视图层。用于给用户提供展示和操作的页面。</td>
+</tr>
+<tr>
+<td style="text-align:center">Controller</td>
+<td style="text-align:center">中间层，负责根据视图层的输入，选择对应的“数据层”数据，对其进行操作，产生最终数据。</td>
+</tr>
+<tr>
+<td style="text-align:center">Mode</td>
+<td style="text-align:center">最底层，即核心的“数据层”，程序需要操作的数据。</td>
+</tr>
+</tbody>
+</table>
+<p>这三层相互独立又是紧密联系，每一层内部的变化不影响其他层，很好地体现了软件设计中“<strong>解耦</strong>”的思想。其中每一层都对外提供接口（Interface），供上面一层调用。通过这种优雅的设计，实现了模块化，修改视图展示或者变更数据都不用修改其他层，极大地方便了维护和升级。</p>
+<blockquote>
+<p>为了方便理解，我们用一个简易计算器为例进行类比。在计算器中，外部的那些按钮和最上面的显示条，相当于&quot;视图层&quot;，那些需要运算的数字就是&quot;数据层&quot;，执行加减乘除的运算步骤相当于&quot;控制层&quot;。每一层执行不同的功能，整个结构清楚明了。</p>
+</blockquote>
+<h2 id="mvc-波澜壮阔的前世今生">MVC 波澜壮阔的“前世今生”</h2>
+<p>说到 MVC 模式，其实最早是由 Trygve Reenskaug 在1978年提出的一种软件架构，其目的是实现一种动态的程序设计，简化后续对程序的修改和扩展，使得程序实现部分复用成为可能，同时程序结构更加直观。</p>
+<blockquote>
+<p>[idea] 可见，程序的可复用性和可扩展性一直以来都是历代优秀程序员们对于代码的“追求”。</p>
+</blockquote>
+<h2 id="时代1model1-模式的出现让史前的混沌世界出现黎明前的曙光">时代1：Model1 模式的出现，让“史前”的混沌世界出现黎明前的曙光</h2>
+<p>Model1 模式其实十分简单，它使用 JSP 页面和 JavaBean 相结合的方式。 JSP 页面负责接收客户端请求， JavaBean 负责业务逻辑处理、数据库操作和返回页面。</p>
+<p><img src="/spring-mvc/images/86ecef19-4eac-46c6-bf57-fc185958bbb6.png" alt="86ecef19-4eac-46c6-bf57-fc185958bbb6" style="zoom:67%;" /></p>
+<h5 id="那为什么-model1-后来从江湖上销声匿迹了呢">那为什么 Model1 后来从江湖上“销声匿迹”了呢？</h5>
+<p>Model1 架构简单，适合小项目开发。然而，JSP 的职责不单一，职责过重，不方便维护，这也是为什么诞生后逐渐“退隐江湖”。</p>
+<blockquote>
+<p>[idea]这个架构设计违背了软件设计的**“职责单一”**原则。</p>
+</blockquote>
+<h2 id="时代2model2mvc模式出现刀耕火种的原始时代迈入了石器时代">时代2：Model2（MVC）模式出现，刀耕火种的原始时代迈入了石器时代</h2>
+<p>上面我们提到，Model1 虽然实现了一定程度的解耦，但 JSP 页面既要负责页面控制，又要负责逻辑处理，导致职责不单一。因此，Model2 应运而生，使得各部分各司其职，职责单一。</p>
+<p>Model2 就是基于 MVC 模式架构，具体如下：</p>
+<ul>
+<li>Controller：负责用户交互（Servlet）</li>
+<li>Model：负责数据逻辑处理（JavaBeans）</li>
+<li>View：负责数据显示（JSP）</li>
+</ul>
+<p><img src="/spring-mvc/images/32f12903-1968-4a42-9cb2-cd1e9552c18f.png" alt="32f12903-1968-4a42-9cb2-cd1e9552c18f" style="zoom:67%;" /></p>
+<h4 id="model2-模式有什么优缺点">Model2 模式有什么优缺点？</h4>
+<ul>
+<li>优点：职责清晰，较适合于大型项目</li>
+<li>缺点：分层较多，不适合小型项目开发</li>
+</ul>
+<h4 id="那-model1-和-model2-有什么区别">那 Model1 和 Model2 有什么区别？</h4>
+<p>Model2 在 Model1 的基础上分离了控制，将 JSP 中的逻辑操作部分分离出来（放在 controller 中），这样做既让 JSP 的职责变得单一，又更有利于分工开发，耦合度降低。因此，对于复杂的 Web 应用开发，更适合使用 Model2，而对于小型应用，使用 Model1 比较简单直接。</p>
+<blockquote>
+<p>[idea]可见，软件开发中一个重要的解耦的思想就是“<strong>分层</strong>，当已有的架构不满足“高内聚，低耦合”时，再抽象出新的分层就能极大的解决这类问题。像现代计算机体系也是在分层中逐渐迭代演进，逐步发展出今天庞大复杂的体系。</p>
+</blockquote>
+<h2 id="时代3struts1-匆匆登上历史舞台又快速落幕">时代3：Struts1 匆匆登上历史舞台，又快速落幕</h2>
+<p><strong>为什么会诞生 Struts1？</strong></p>
+<p><a href="https://siteson.github.io/post/history-of-mvc-mode/#fn:3" target="_blank" rel="noopener noreffer">Struts1</a> 出现的目的是为了帮助开发者减少运用 MVC 模型开发 Web 应用的时间。因为使用 Struts1可以提高系统的维护和开发效率，我们只需要配置和编码实现Action 和 ActionForm 就可以了。</p>
+<h4 id="struts1-组成部分">Struts1 组成部分</h4>
+<p><img src="/spring-mvc/images/3caecd79-99cd-4fc7-8cb7-ed5478858427.jpg" alt="3caecd79-99cd-4fc7-8cb7-ed5478858427" style="zoom:80%;" /></p>
+<p>为了让你更清楚地看到 Servlet 和 Struts1的区别，接下来我们一起来看下它们的执行过程。</p>
+<h4 id="servlet-的执行过程">Servlet 的执行过程</h4>
+<p>使用Servlet， 需要每个页面都设置一个 Servlet 类来处理请求和响应，然后再获取用户提交的数据并把数据与持久化类对应起来。再做判断，决定跳转，再让JSP显示。</p>
+<p><img src="/spring-mvc/images/d5ff3203-b93e-4f4f-ada3-dba81bc86f70.png" alt="d5ff3203-b93e-4f4f-ada3-dba81bc86f70" style="zoom:80%;" /></p>
+<h4 id="struts1-的执行过程">Struts1 的执行过程</h4>
+<p>使用 Struts1时，通过运行时（runtime）初始化ActionServlet，再把所有持久化类的各个属性设为null。当有请求来时，通过name属性找到form-beans中form-bean的name属性，得到ActionForm的包名类名。然后实例化form，把用户数据提交给它，调用form的validate 方法验证。ActionErrors返回null表示验证通过，否则失败返回。验证通过会根据请求的Action类型实例化Action，执行Action的execute方法。根据传进来的ActionForm持久化对象可以取到传进来的数据，这个数据可以先和数据库中的数据交互，再决定跳转。</p>
+<p>换句话说，也就是 Struts1封装了request.getParameter()，再把数据传给JavaBean持久化类。另外，Struts1弥补了JPS标签的不足，为开发提供了便利。</p>
+<p><img src="/spring-mvc/images/12f67b3d-87ab-4e09-8da7-925d93956dc8.png" alt="12f67b3d-87ab-4e09-8da7-925d93956dc8" style="zoom:80%;" /></p>
+<h2 id="时代4struts2-野心勃勃却创业未半而中道崩殂">时代4：Struts2 野心勃勃却“创业未半而中道崩殂”</h2>
+<h3 id="struts2-诞生背景">Struts2 诞生背景</h3>
+<p>Struts2 和 Struts1的差别巨大，<strong>Struts2以 WebWork 为核心，采用拦截器的机制来处理用户的请求</strong>，这样的设计使得控制器的业务逻辑与Servlet API完全脱离。</p>
+<h3 id="struts1-与struts2-有什么区别">Struts1 与Struts2 有什么区别？</h3>
+<p>我们主要从Action类、线程模式、Servlet依赖、捕获输入、表达式语言等五个方面来进行比较。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">比较项</th>
+<th style="text-align:center">Struts1</th>
+<th style="text-align:center">Struts2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Action类</td>
+<td style="text-align:center">Action类继承一个抽象基类</td>
+<td style="text-align:center">Action类可以实现一个Action接口，也可以实现其他接口</td>
+</tr>
+<tr>
+<td style="text-align:center">线程模式</td>
+<td style="text-align:center">单例设计模式且是必须是线程安全，因为仅有一个Action的实例处理所有请求</td>
+<td style="text-align:center">每一个请求产生一个实例，因此没有线程安全问题</td>
+</tr>
+<tr>
+<td style="text-align:center">Servlet依赖</td>
+<td style="text-align:center">依赖于Servlet API，因为当一个Action被调用时<br/>HttpservletRequest和HttpServletResponse被传递给execute方法</td>
+<td style="text-align:center">不依赖于容器，允许Action脱离容器单独被测试</td>
+</tr>
+<tr>
+<td style="text-align:center">捕获输入</td>
+<td style="text-align:center">使用ActionForm对象捕获输入，所有的ActionForm必须继承一个基类</td>
+<td style="text-align:center">直接使用Action属性作为输入属性</td>
+</tr>
+<tr>
+<td style="text-align:center">表达式语言</td>
+<td style="text-align:center">整合了JSTL El表达式</td>
+<td style="text-align:center">不仅可以使用JSTL，也支持ognl表达式语言</td>
+</tr>
+</tbody>
+</table>
+<h3 id="为什么-struts2中道崩殂">为什么 Struts2“中道崩殂”？</h3>
+<p>随着历史的车轮滚滚向前，曾经风靡一时的 Struts2 最终被 Spring MVC所取代，最主要是因为 Struts2 的安全问题异常严峻，Struts2 的安全漏洞，让不少公司吃尽了苦头，慢慢磨掉了用户的信心。</p>
+<blockquote>
+<p>[idea]做产品一定要为用户考虑，有用户意识，否则，曾经哪怕光芒万丈，也只是过往云烟。</p>
+</blockquote>
+<h2 id="时代5迈入-spring-mvc-如日中天的时代">时代5：迈入 Spring MVC 如日中天的时代</h2>
+<h4 id="springmvc-原理图">SpringMVC 原理图</h4>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="spring-mvc/images/8e93b907-8cf4-44cd-b9c7-e3a06b668eec.jpg"
+        data-srcset="spring-mvc/images/8e93b907-8cf4-44cd-b9c7-e3a06b668eec.jpg, spring-mvc/images/8e93b907-8cf4-44cd-b9c7-e3a06b668eec.jpg 1.5x, spring-mvc/images/8e93b907-8cf4-44cd-b9c7-e3a06b668eec.jpg 2x"
+        data-sizes="auto"
+        alt="spring-mvc/images/8e93b907-8cf4-44cd-b9c7-e3a06b668eec.jpg"
+        title="8e93b907-8cf4-44cd-b9c7-e3a06b668eec" /></p>
+<h3 id="spring-mvc和-struts2-有什么区别">Spring MVC和 Struts2 有什么区别？</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">区别点</th>
+<th style="text-align:center">Spring MVC</th>
+<th style="text-align:center">Struts2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">入口不同</td>
+<td style="text-align:center">servlet</td>
+<td style="text-align:center">filter</td>
+</tr>
+<tr>
+<td style="text-align:center">生命周期不同</td>
+<td style="text-align:center">MVC Controller是单例，所以效率更高，但不能用成员变量获取参数</td>
+<td style="text-align:center">Struts2 Action 是多例，所以效率比较低，可以用成员变量获取参数</td>
+</tr>
+</tbody>
+</table>
+<h4 id="参考链接">参考链接：</h4>
+<p>[1]https://siteson.github.io/post/history-of-mvc-mode/</p>
+<p>[2]http://www.ruanyifeng.com/blog/2007/11/mvc.html</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2020-03-05</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/1-mvc-%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/index.md" target="_blank">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://xing-yin.github.io/1-mvc-%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/" data-title="Spring MVC 系列之 MVC 模式的“前世今生”" data-hashtags="content,Markdown"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://xing-yin.github.io/1-mvc-%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/" data-hashtag="content"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://xing-yin.github.io/1-mvc-%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/" data-title="Spring MVC 系列之 MVC 模式的“前世今生”"><i class="fab fa-hacker-news fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://xing-yin.github.io/1-mvc-%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/" data-title="Spring MVC 系列之 MVC 模式的“前世今生”"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://xing-yin.github.io/1-mvc-%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/" data-title="Spring MVC 系列之 MVC 模式的“前世今生”"><i class="fab fa-weibo fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/content/">内容</a>,&nbsp;<a href="/tags/markdown/">Markdown</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/theme-documentation-content/" class="prev" rel="prev" title="主题文档 - 内容"><i class="fas fa-angle-left fa-fw"></i>主题文档 - 内容</a>
+            <a href="/theme-documentation-basics/" class="next" rel="next" title="主题文档 - 基本概念">主题文档 - 基本概念<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.81.0">Hugo</a> 强力驱动
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2017 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">AlanYin</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.2.0/dist/css/lightgallery.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.2.0/dist/js/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.2.0/dist/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"valine":{"appId":"QGzwQXOqs5JOhN4RGPOkR2mR-MdYXbMMI","appKey":"WBmoGyJtbqUswvfLh6L8iEBr","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@5.0.1/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"zh-cn","pageSize":10,"placeholder":"你的评论 ...","recordIP":true,"serverURLs":"https://leancloud.hugoloveit.com","visitor":true}},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"search":{"algoliaAppID":"PASDMWALPK","algoliaIndex":"index.zh-cn","algoliaSearchKey":"b42948e51daaa93df92381c8e2ac0f93","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
