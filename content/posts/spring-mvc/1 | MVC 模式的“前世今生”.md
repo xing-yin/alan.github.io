@@ -6,8 +6,8 @@ lastmod: 2020-03-05T16:30:05+08:00
 draft: false
 author: "AlanYin"
 resources:
-- name: "tmp"
-  src: "/tmp.jpg"
+- name: "week-image"
+  src: "week-image.png"
 
 tags: ["content", "Markdown"]
 categories: ["documentation"]
@@ -48,9 +48,7 @@ MVC 是 Mode(模型)、View(视图)、Controller(控制) 三个单词的缩写�
 
 Model1 模式其实十分简单，它使用 JSP 页面和 JavaBean 相结合的方式。 JSP 页面负责接收客户端请求， JavaBean 负责业务逻辑处理、数据库操作和返回页面。
 
-![Minion](/spring-mvc/images/86ecef19-4eac-46c6-bf57-fc185958bbb6.png)
-
-<img src="/spring-mvc/images/86ecef19-4eac-46c6-bf57-fc185958bbb6.png" alt="86ecef19-4eac-46c6-bf57-fc185958bbb6" style="zoom:67%;" />
+<img src="/alan.github.io/spring-mvc/images/86ecef19-4eac-46c6-bf57-fc185958bbb6.png" alt="86ecef19-4eac-46c6-bf57-fc185958bbb6" style="zoom:67%;" />
 
 ##### 那为什么 Model1 后来从江湖上“销声匿迹”了呢？
 
@@ -68,7 +66,7 @@ Model2 就是基于 MVC 模式架构，具体如下：
 - Model：负责数据逻辑处理（JavaBeans）
 - View：负责数据显示（JSP）
 
-<img src="/spring-mvc/images/32f12903-1968-4a42-9cb2-cd1e9552c18f.png" alt="32f12903-1968-4a42-9cb2-cd1e9552c18f" style="zoom:67%;" />
+<img src="/alan.github.io/spring-mvc/images/32f12903-1968-4a42-9cb2-cd1e9552c18f.png" alt="32f12903-1968-4a42-9cb2-cd1e9552c18f" style="zoom:67%;" />
 
 #### Model2 模式有什么优缺点？
 
@@ -89,7 +87,7 @@ Model2 在 Model1 的基础上分离了控制，将 JSP 中的逻辑操作部分
 
 #### Struts1 组成部分
 
-<img src="/spring-mvc/images/3caecd79-99cd-4fc7-8cb7-ed5478858427.jpg" alt="3caecd79-99cd-4fc7-8cb7-ed5478858427" style="zoom:80%;" />
+<img src="/alan.github.io/spring-mvc/images/3caecd79-99cd-4fc7-8cb7-ed5478858427.jpg" alt="3caecd79-99cd-4fc7-8cb7-ed5478858427" style="zoom:80%;" />
 
 为了让你更清楚地看到 Servlet 和 Struts1的区别，接下来我们一起来看下它们的执行过程。
 
@@ -97,7 +95,7 @@ Model2 在 Model1 的基础上分离了控制，将 JSP 中的逻辑操作部分
 
 使用Servlet， 需要每个页面都设置一个 Servlet 类来处理请求和响应，然后再获取用户提交的数据并把数据与持久化类对应起来。再做判断，决定跳转，再让JSP显示。
 
-<img src="/spring-mvc/images/d5ff3203-b93e-4f4f-ada3-dba81bc86f70.png" alt="d5ff3203-b93e-4f4f-ada3-dba81bc86f70" style="zoom:80%;" />
+<img src="/alan.github.io/spring-mvc/images/d5ff3203-b93e-4f4f-ada3-dba81bc86f70.png" alt="d5ff3203-b93e-4f4f-ada3-dba81bc86f70" style="zoom:80%;" />
 
 #### Struts1 的执行过程
 
@@ -105,7 +103,7 @@ Model2 在 Model1 的基础上分离了控制，将 JSP 中的逻辑操作部分
 
 换句话说，也就是 Struts1封装了request.getParameter()，再把数据传给JavaBean持久化类。另外，Struts1弥补了JPS标签的不足，为开发提供了便利。
 
-<img src="/spring-mvc/images/12f67b3d-87ab-4e09-8da7-925d93956dc8.png" alt="12f67b3d-87ab-4e09-8da7-925d93956dc8" style="zoom:80%;" />
+<img src="/alan.github.io/spring-mvc/images/12f67b3d-87ab-4e09-8da7-925d93956dc8.png" alt="12f67b3d-87ab-4e09-8da7-925d93956dc8" style="zoom:80%;" />
 
 ## 时代4：Struts2 野心勃勃却“创业未半而中道崩殂”
 
