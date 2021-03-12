@@ -3,12 +3,5 @@
         <title>配置 - 标签 - AlanYin`s Blog</title>
         <link>https://xing-yin.github.io/alan.github.io/tags/configuration/</link>
         <description>配置 - 标签 - AlanYin`s Blog</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 06 Mar 2020 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://xing-yin.github.io/alan.github.io/tags/configuration/" rel="self" type="application/rss+xml" /><item>
-    <title>主题文档 - 基本概念</title>
-    <link>https://xing-yin.github.io/alan.github.io/theme-documentation-basics/</link>
-    <pubDate>Fri, 06 Mar 2020 00:00:00 &#43;0000</pubDate>
-    <author>作者</author>
-    <guid>https://xing-yin.github.io/alan.github.io/theme-documentation-basics/</guid>
-    <description><![CDATA[<p>探索 Hugo - <strong>LoveIt</strong> 主题的全部内容和背后的核心概念.</p>]]></description>
-</item></channel>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><atom:link href="https://xing-yin.github.io/alan.github.io/tags/configuration/" rel="self" type="application/rss+xml" /></channel>
 </rss>

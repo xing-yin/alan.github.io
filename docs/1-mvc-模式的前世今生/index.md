@@ -29,6 +29,8 @@ MVC 是 Mode(模型)、View(视图)、Controller(控制) 三个单词的缩写�
 
 Model1 模式其实十分简单，它使用 JSP 页面和 JavaBean 相结合的方式。 JSP 页面负责接收客户端请求， JavaBean 负责业务逻辑处理、数据库操作和返回页面。
 
+![Minion](/spring-mvc/images/86ecef19-4eac-46c6-bf57-fc185958bbb6.png)
+
 <img src="/spring-mvc/images/86ecef19-4eac-46c6-bf57-fc185958bbb6.png" alt="86ecef19-4eac-46c6-bf57-fc185958bbb6" style="zoom:67%;" />
 
 ##### 那为什么 Model1 后来从江湖上“销声匿迹”了呢？
